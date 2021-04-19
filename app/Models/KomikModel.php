@@ -17,8 +17,8 @@ class KomikModel extends Model
         }
         return $this->where(['slug' => $slug])->first();
     }
-    public function add($data)
-    {
-        $this->db->table('komik')->insert($data);
-    }
+    // public function add($data)
+    // {
+    //     $this->db->table('komik')->insert($data);
+    // }
 }

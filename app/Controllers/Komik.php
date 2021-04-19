@@ -69,12 +69,12 @@ class Komik extends BaseController
                     'required' => '{field} komik harus diisi.'
                 ]
             ],
-            'sampul' => [
-                'rules' => 'required[komik.sampul]',
-                'errors' => [
-                    'required' => 'Upload file {field}.'
-                ]
-            ]
+            // 'sampul' => [
+            //     'rules' => 'required[komik.sampul]',
+            //     'errors' => [
+            //         'required' => 'Upload file {field}.'
+            //     ]
+            // ]
         ])) {
             // $validation = \Config\Services::validation();
 
@@ -84,9 +84,9 @@ class Komik extends BaseController
 
         //insert data ke database
         $slug = url_title($this->request->getVar('judul'), '-', true);
-        $this->komikModel->add([
+        $this->komikModel->save([
             'judul' => $this->request->getVar('judul'),
-            'Slug' => $slug,
+            'slug' => $slug,
             'penulis' => $this->request->getVar('penulis'),
             'penerbit' => $this->request->getVar('penerbit'),
             'sampul' => $this->request->getVar('sampul')
