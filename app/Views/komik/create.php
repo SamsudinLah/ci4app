@@ -38,10 +38,13 @@
                 </div>
                 <div class="form-group row mb-4">
                     <label for="sampul" class="col-sm-2 col-form-label">Sampul</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-2">
+                        <img src="/img/default.jpeg" class="img-thumbnail img-preview">
+                    </div>
+                    <div class="col-sm-8">
                         <div class="mb-3">
                             <label for="Sampul" class="form-label mt-1">Pilih Gambar</label>
-                            <input class="form-control <?= ($validation->hasError('sampul')) ? 'is-invalid' : ""; ?>" type="file" id="sampul" name="sampul">
+                            <input class="form-control <?= ($validation->hasError('sampul')) ? 'is-invalid' : ""; ?>" type="file" id="sampul" name="sampul" onchange="previewImg()">
                             <div id="validationServerUsernameFeedback" class="invalid-feedback">
                                 <?= $validation->getError('sampul'); ?>
                             </div>

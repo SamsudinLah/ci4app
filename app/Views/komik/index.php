@@ -3,11 +3,19 @@
 <?= $this->section('content'); ?>
 <div class="container">
     <div class="row">
+        <div class="row">
+            <div class="col-auto me-auto">
+                <!-- judul halaman -->
+                <h1 class="mt-2">Daftar Komik</h1>
+            </div>
+            <!-- tombol tambah -->
+            <div class="col-md-auto ms-md-auto"><a href="/komik/create" class="btn btn-primary mt-3">Tambah Data Komik</a></div>
+        </div>
         <div class="col">
             <!-- tombol tambah -->
-            <a href="/komik/create" class="btn btn-primary mt-3">Tambah Data Komik</a>
+            <!-- <a href="/komik/create" class="btn btn-primary mt-3">Tambah Data Komik</a> -->
             <!-- judul halaman -->
-            <h1 class="mt-2">Daftar Komik</h1>
+            <!-- <h1 class="mt-2">Daftar Komik</h1> -->
             <!-- alert session -->
             <?php if (session()->getFlashdata('addsuccess')) : ?>
                 <div class="alert alert-success" role="alert">
