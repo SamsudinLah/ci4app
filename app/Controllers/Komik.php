@@ -181,7 +181,7 @@ class Komik extends BaseController
             $fileSampul = $this->request->getFile('sampul');
 
             // cek gambar, apakah tetap gambar lama
-            if ($fileSampul->getError() == 4) {
+            if ($fileSampul->getError() != 4) {
                 $namaSampul = $this->request->getVar('sampulLama');
             } else {
                 // generate nama file random
@@ -196,7 +196,7 @@ class Komik extends BaseController
             $this->komikModel->save([
                 'id' => $id,
                 'judul' => $this->request->getVar('judul'),
-                'Slug' => $slug,
+                'slug' => $slug,
                 'penulis' => $this->request->getVar('penulis'),
                 'penerbit' => $this->request->getVar('penerbit'),
                 'sampul' => $namaSampul
