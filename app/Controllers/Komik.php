@@ -115,15 +115,13 @@ class Komik extends BaseController
         // cari gambar berdasarkan id
         $komik = $this->komikModel->find($id);
         // cek jika gambarnya default.jpeg
-        if ($komik['sampul'] != 'default.jpg') {
+        if ($komik['sampul'] != 'default.jpeg') {
             // hapus gambar 
-            unlink('img/' . $komik['sampul']);
+            unlink('img' . $komik['sampul']);
         }
 
         $this->komikModel->delete($id);
-
         session()->setFlashdata('removed', 'Data berhasil dihapus.');
-
         return redirect()->to('/komik');
     }
     public function edit($slug)
@@ -181,15 +179,21 @@ class Komik extends BaseController
             $fileSampul = $this->request->getFile('sampul');
 
             // cek gambar, apakah tetap gambar lama
-            if ($fileSampul->getError() != 4) {
+            if ($fileSampul->getError() == 4) {
                 $namaSampul = $this->request->getVar('sampulLama');
+                // gambar default tidak hilang
+            } else if ($this->request->getVar('sampulLama') == 'default.jpeg') {
+                // generate nama file random
+                $namaSampul = $fileSampul->getRandomName();
+                // pindahkan gambar
+                $fileSampul->move('img', $namaSampul);
             } else {
                 // generate nama file random
                 $namaSampul = $fileSampul->getRandomName();
                 // pindahkan gambar
-                $fileSampul->move('img/', $namaSampul);
+                $fileSampul->move('img', $namaSampul);
                 // hapus file lama
-                unlink('img/' . $this->request->getVar('sampulLama'));
+                unlink('img' . $this->request->getVar('sampulLama'));
             }
 
             $slug = url_title($this->request->getVar('judul'), '-', true);

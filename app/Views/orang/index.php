@@ -35,7 +35,69 @@
                             <td><?= $o['nama']; ?></td>
                             <td><?= $o['alamat']; ?></td>
                             <td>
-                                <a href="" class=" btn btn-success">Detail</a>
+                                <!-- TOMBOL MODAL -->
+                                <a class="btn btn-primary" id="tombolDetail" data-bs-toggle="modal" data-bs-target="#detailModal" data-id="<?= $o['id']; ?>" data-nama="<?= $o['nama']; ?>" data-alamat="<?= $o['alamat']; ?>">
+                                    Detail
+                                </a>
+                                <!-- TOMBOL MODAL EDIT -->
+                                <a class="btn btn-warning" id="tombolEdit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $o['id']; ?>" data-nama="<?= $o['nama']; ?>" data-alamat="<?= $o['alamat']; ?>">
+                                    Edit
+                                </a>
+                                <!-- MODAL DETAIL -->
+                                <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Detail Orang</h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="" method="post">
+                                                    <input type="hidden" name="id" id="id">
+                                                    <div class="form-group">
+                                                        <label for="nama" class="col-form-label">Nama</label>
+                                                        <input type="text" class="form-control" id="nama" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="alamat" class="col-form-label">Alamat</label>
+                                                        <input type="text" class="form-control" id="alamat" disabled>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- MODAL EDIT -->
+                                <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Edit Orang</h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="" method="post">
+                                                    <input type="hidden" name="id" id="id">
+                                                    <div class="form-group">
+                                                        <label for="nama" class="col-form-label">Nama</label>
+                                                        <input type="text" class="form-control" id="nama">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="alamat" class="col-form-label">Alamat</label>
+                                                        <input type="text" class="form-control" id="alamat">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Save</button>
+                                                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     <?php endforeach; ?>
