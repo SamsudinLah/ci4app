@@ -36,68 +36,9 @@
                             <td><?= $o['alamat']; ?></td>
                             <td>
                                 <!-- TOMBOL MODAL -->
-                                <a class="btn btn-primary" id="tombolDetail" data-bs-toggle="modal" data-bs-target="#detailModal" data-id="<?= $o['id']; ?>" data-nama="<?= $o['nama']; ?>" data-alamat="<?= $o['alamat']; ?>">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $o['id']; ?>">
                                     Detail
-                                </a>
-                                <!-- TOMBOL MODAL EDIT -->
-                                <a class="btn btn-warning" id="tombolEdit" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $o['id']; ?>" data-nama="<?= $o['nama']; ?>" data-alamat="<?= $o['alamat']; ?>">
-                                    Edit
-                                </a>
-                                <!-- MODAL DETAIL -->
-                                <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Detail Orang</h5>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form action="" method="post">
-                                                    <input type="hidden" name="id" id="id">
-                                                    <div class="form-group">
-                                                        <label for="nama" class="col-form-label">Nama</label>
-                                                        <input type="text" class="form-control" id="nama" disabled>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="alamat" class="col-form-label">Alamat</label>
-                                                        <input type="text" class="form-control" id="alamat" disabled>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- MODAL EDIT -->
-                                <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Edit Orang</h5>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form action="" method="post">
-                                                    <input type="hidden" name="id" id="id">
-                                                    <div class="form-group">
-                                                        <label for="nama" class="col-form-label">Nama</label>
-                                                        <input type="text" class="form-control" id="nama">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="alamat" class="col-form-label">Alamat</label>
-                                                        <input type="text" class="form-control" id="alamat">
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Save</button>
-                                                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -106,5 +47,35 @@
             <?= $pager->links('orang', 'orang_pagination'); ?>
         </div>
     </div>
+    <?php foreach ($orang as $o) : ?>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal<?= $o['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Detail Orang</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/orang/update/<?= $o['id']; ?>" method="post" enctype="multipart/form-data">
+                            <?= csrf_field(); ?>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Nama</label>
+                                <input type="text" value="<?= $o['nama']; ?>" class="form-control" id="exampleInputEmail1" name="nama" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Alamat</label>
+                                <input type="text" value="<?= $o['alamat']; ?>" name="alamat" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Edit</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
 </div>
 <?= $this->endSection(''); ?>
