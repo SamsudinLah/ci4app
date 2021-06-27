@@ -35,17 +35,15 @@ class Orang extends BaseController
 
         return view('orang/index', $data);
     }
-    public function detail($keyword)
-    {
-        $data = [
-            'title' => 'Detail Orang',
-            'orang' => $this->orangModel->getOrang($keyword)
-        ];
-        //jika komik tidak ada di tabel
-        // if (empty($data['komik'])) {
-        //     throw new \CodeIgniter\Exceptions\PageNotFoundException('Judul komik ' . $slug . ' tidak ditemukan.');
-        // }
 
-        return view('orang/index', $data);
+
+    public function update($id)
+    {
+        $this->orangModel->save([
+            'id' => $id,
+            'nama' => $this->request->getPost('nama'),
+            'alamat' => $this->request->getPost('alamat')
+        ]);
+        return redirect()->to('/orang');
     }
 }
