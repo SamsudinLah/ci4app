@@ -12,6 +12,7 @@
                 <a class="nav-link" href="/komik">Komik</a>
                 <a class="nav-link" href="/orang">Orang</a>
                 <a class="nav-link" href="#">Siswa</a>
+                <a class="nav-link" href="#">Guru</a>
                 <!-- <a class="nav-link" href="/sekolah">Sekolah</a>
                 <a class="nav-link" href="/sekolah/sekolah">Hero</a> -->
             </ul>
