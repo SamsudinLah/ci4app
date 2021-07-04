@@ -59,6 +59,16 @@
             $(".modal-body #nama").val(nama);
             $(".modal-body #alamat").val(alamat);
         });
+
+        $(document).on("click", "#tombolCreate", function() {
+            let id = $(this).data('id_orang');
+            let nama = $(this).data('nama');
+            let alamat = $(this).data('alamat');
+
+            $(".modal-body #id_orang").val(id_orang);
+            $(".modal-body #nama").val(nama);
+            $(".modal-body #alamat").val(alamat);
+        });
     </script>
 </body>
 
